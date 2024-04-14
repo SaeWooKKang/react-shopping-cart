@@ -1,4 +1,4 @@
-import { http, HttpResponse } from 'msw'
+import { delay, http, HttpResponse } from 'msw'
 
 import type { ProductList } from '@/routes/-product-list.api'
 
@@ -9,7 +9,9 @@ const allProducts = new Map<number, ProductList[number]>(
 )
 
 export const productsHandlers = [
-  http.get('/products', () => {
+  http.get('/products', async () => {
+    await delay(1000)
+
     return HttpResponse.json(Array.from(allProducts.values()))
   }),
 ]
