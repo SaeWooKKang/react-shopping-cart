@@ -1,0 +1,161 @@
+<!DOCTYPE html><html class="default" lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>react-shopping-cart</title><meta name="description" content="Documentation for react-shopping-cart"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script defer src="assets/main.js"></script><script async src="assets/icons.js" id="tsd-icons-script"></script><script async src="assets/search.js" id="tsd-search-script"></script><script async src="assets/navigation.js" id="tsd-nav-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";document.body.style.display="none";setTimeout(() => app?app.showPage():document.body.style.removeProperty("display"),500)</script><header class="tsd-page-toolbar"><div class="tsd-toolbar-contents container"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget tsd-toolbar-icon search no-caption"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><use href="assets/icons.svg#icon-search"></use></svg></label><input type="text" id="tsd-search-field" aria-label="Search"/></div><div class="field"><div id="tsd-toolbar-links"></div></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">react-shopping-cart</a></div><div class="table-cell" id="tsd-widgets"><a href="#" class="tsd-widget tsd-toolbar-icon menu no-caption" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><use href="assets/icons.svg#icon-menu"></use></svg></a></div></div></header><div class="container container-main"><div class="col-content"><div class="tsd-page-title"><h2>react-shopping-cart</h2></div><div class="tsd-panel tsd-typography"><p align="middle" >
+  <img src="https://techcourse-storage.s3.ap-northeast-2.amazonaws.com/3e6c6f30b11d4b098b5a3e81be19ce3a" width="400">
+</p>
+<h2 align="middle">장바구니</h2>
+<p align="middle">React 데스크탑 장바구니 애플리케이션</p>
+</p>
+
+<a id="md:🚀-getting-started" class="tsd-anchor"></a><h2><a href="#md:🚀-getting-started">🚀 Getting Started</a></h2><blockquote>
+<p>다수의 컴포넌트를 페이지로 구성하고 복잡해진 상태를 관리합니다.</p>
+</blockquote>
+<p>✔️ 데스크탑 타겟의 웹 앱을 구현하며 구매로 이어지는 것에 끊김이 없고 재방문을 고려한 UI/UX에 대해 고민해봅니다.<br>✔️ 다른 라이브러리나 프레임워크 없이 오로지 React만으로 상태를 관리하고 컴포넌트를 설계합니다.<br>✔️ 상태 관리를 위한 전략을 설계하고 구상하여 확장을 열어둡니다.<br>✔️ Router를 활용해 여러 페이지 전환을 고려합니다.<br>✔️ <a href="https://github.com/next-step/shopping-cart-css">CSS Template</a></p>
+<br />
+
+<a id="md:🕋-server-guide" class="tsd-anchor"></a><h3><a href="#md:🕋-server-guide">🕋 Server Guide</a></h3><ul>
+<li>기본적으로 <code>MSW</code> 를 필수로 하고 있으며 서버는 필수가 아닙니다.</li>
+<li><code>Schema</code>는 참고를 위함이니 자유롭게 변경 가능합니다.</li>
+<li>자유롭게 <code>Mock Server</code>를 활용해주세요.</li>
+</ul>
+<br />
+
+<a id="md:📝-api-amp-db-schema" class="tsd-anchor"></a><h3><a href="#md:📝-api-amp-db-schema">📝 API &amp; DB Schema</a></h3><a id="md:🎁-상품" class="tsd-anchor"></a><h4><a href="#md:🎁-상품">🎁 상품</a></h4><a id="md:상품-목록-조회" class="tsd-anchor"></a><h5><a href="#md:상품-목록-조회">상품 목록 조회</a></h5><table>
+<thead>
+<tr>
+<th>method</th>
+<th>uri</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GET</td>
+<td>/products</td>
+</tr>
+</tbody></table>
+<pre><code class="language-json"><span class="hl-0">{</span><br/><span class="hl-0">    </span><span class="hl-1">&quot;response&quot;</span><span class="hl-0">: [</span><br/><span class="hl-0">        {</span><br/><span class="hl-0">            </span><span class="hl-1">&quot;id&quot;</span><span class="hl-0">: </span><span class="hl-2">1</span><span class="hl-0">,</span><br/><span class="hl-0">            </span><span class="hl-1">&quot;price&quot;</span><span class="hl-0">: </span><span class="hl-2">10000</span><span class="hl-0">,</span><br/><span class="hl-0">            </span><span class="hl-1">&quot;name&quot;</span><span class="hl-0">: </span><span class="hl-3">&quot;치킨&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">            </span><span class="hl-1">&quot;imageUrl&quot;</span><span class="hl-0">: </span><span class="hl-3">&quot;http://example.com/chicken.jpg&quot;</span><br/><span class="hl-0">        },</span><br/><span class="hl-0">        {</span><br/><span class="hl-0">            </span><span class="hl-1">&quot;id&quot;</span><span class="hl-0">: </span><span class="hl-2">2</span><span class="hl-0">,</span><br/><span class="hl-0">            </span><span class="hl-1">&quot;price&quot;</span><span class="hl-0">: </span><span class="hl-2">20000</span><span class="hl-0">,</span><br/><span class="hl-0">            </span><span class="hl-1">&quot;name&quot;</span><span class="hl-0">: </span><span class="hl-3">&quot;피자&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">            </span><span class="hl-1">&quot;imageUrl&quot;</span><span class="hl-0">: </span><span class="hl-3">&quot;http://example.com/pizza.jpg&quot;</span><br/><span class="hl-0">        }</span><br/><span class="hl-0">    ]</span><br/><span class="hl-0">}</span>
+</code><button>Copy</button></pre>
+<a id="md:상품-추가" class="tsd-anchor"></a><h5><a href="#md:상품-추가">상품 추가</a></h5><table>
+<thead>
+<tr>
+<th>method</th>
+<th>uri</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>POST</td>
+<td>/products</td>
+</tr>
+</tbody></table>
+<pre><code class="language-json"><span class="hl-0">{</span><br/><span class="hl-0">    </span><span class="hl-1">&quot;requestBody&quot;</span><span class="hl-0">: {</span><br/><span class="hl-0">        </span><span class="hl-1">&quot;products&quot;</span><span class="hl-0">: {</span><br/><span class="hl-0">            </span><span class="hl-1">&quot;price&quot;</span><span class="hl-0">: </span><span class="hl-2">10000</span><span class="hl-0">,</span><br/><span class="hl-0">            </span><span class="hl-1">&quot;name&quot;</span><span class="hl-0">: </span><span class="hl-3">&quot;치킨&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">            </span><span class="hl-1">&quot;imageUrl&quot;</span><span class="hl-0">: </span><span class="hl-3">&quot;http://example.com/chicken.jpg&quot;</span><br/><span class="hl-0">        }</span><br/><span class="hl-0">    }</span><br/><span class="hl-0">}</span>
+</code><button>Copy</button></pre>
+<a id="md:상품-단일-조회" class="tsd-anchor"></a><h5><a href="#md:상품-단일-조회">상품 단일 조회</a></h5><table>
+<thead>
+<tr>
+<th>method</th>
+<th>uri</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GET</td>
+<td>/products/{id}</td>
+</tr>
+</tbody></table>
+<pre><code class="language-json"><span class="hl-0">{</span><br/><span class="hl-0">    </span><span class="hl-1">&quot;response&quot;</span><span class="hl-0">: {</span><br/><span class="hl-0">        </span><span class="hl-1">&quot;id&quot;</span><span class="hl-0">: </span><span class="hl-2">1</span><span class="hl-0">,</span><br/><span class="hl-0">        </span><span class="hl-1">&quot;price&quot;</span><span class="hl-0">: </span><span class="hl-2">10000</span><span class="hl-0">,</span><br/><span class="hl-0">        </span><span class="hl-1">&quot;name&quot;</span><span class="hl-0">: </span><span class="hl-3">&quot;치킨&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">        </span><span class="hl-1">&quot;imageUrl&quot;</span><span class="hl-0">: </span><span class="hl-3">&quot;http://example.com/chicken.jpg&quot;</span><br/><span class="hl-0">    }</span><br/><span class="hl-0">}</span>
+</code><button>Copy</button></pre>
+<a id="md:상품-단일-삭제" class="tsd-anchor"></a><h5><a href="#md:상품-단일-삭제">상품 단일 삭제</a></h5><table>
+<thead>
+<tr>
+<th>method</th>
+<th>uri</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DELETE</td>
+<td>/products/{id}</td>
+</tr>
+</tbody></table>
+<pre><code class="language-json"><span class="hl-0">{</span><br/><span class="hl-0">    </span><span class="hl-1">&quot;response&quot;</span><span class="hl-0">: {}</span><br/><span class="hl-0">}</span>
+</code><button>Copy</button></pre>
+<a id="md:🛒-장바구니" class="tsd-anchor"></a><h4><a href="#md:🛒-장바구니">🛒 장바구니</a></h4><a id="md:장바구니-아이템-목록-조회" class="tsd-anchor"></a><h5><a href="#md:장바구니-아이템-목록-조회">장바구니 아이템 목록 조회</a></h5><table>
+<thead>
+<tr>
+<th>method</th>
+<th>uri</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GET</td>
+<td>/carts</td>
+</tr>
+</tbody></table>
+<pre><code class="language-json"><span class="hl-0">{</span><br/><span class="hl-0">  </span><span class="hl-1">&quot;response&quot;</span><span class="hl-0">: {</span><br/><span class="hl-0">    </span><span class="hl-1">&quot;id&quot;</span><span class="hl-0">: </span><span class="hl-2">1</span><span class="hl-0">,</span><br/><span class="hl-0">      </span><span class="hl-1">&quot;product&quot;</span><span class="hl-0">: {</span><br/><span class="hl-0">            </span><span class="hl-1">&quot;name&quot;</span><span class="hl-0">: </span><span class="hl-3">&quot;test&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">            </span><span class="hl-1">&quot;price&quot;</span><span class="hl-0">: </span><span class="hl-2">1234</span><span class="hl-0">,</span><br/><span class="hl-0">            </span><span class="hl-1">&quot;imageUrl&quot;</span><span class="hl-0">: </span><span class="hl-3">&quot;test.com&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">            </span><span class="hl-1">&quot;id&quot;</span><span class="hl-0">: </span><span class="hl-2">1</span><br/><span class="hl-0">        },</span><br/><span class="hl-0">    },</span><br/><span class="hl-0">    </span><span class="hl-4">{</span><br/><span class="hl-0">    </span><span class="hl-1">&quot;id&quot;</span><span class="hl-0">: </span><span class="hl-2">5</span><span class="hl-0">,</span><br/><span class="hl-0">        </span><span class="hl-1">&quot;product&quot;</span><span class="hl-0">: {</span><br/><span class="hl-0">            </span><span class="hl-1">&quot;name&quot;</span><span class="hl-0">: </span><span class="hl-3">&quot;tes11111t&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">            </span><span class="hl-1">&quot;price&quot;</span><span class="hl-0">: </span><span class="hl-2">1234</span><span class="hl-0">,</span><br/><span class="hl-0">            </span><span class="hl-1">&quot;imageUrl&quot;</span><span class="hl-0">: </span><span class="hl-3">&quot;test.com&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">            </span><span class="hl-1">&quot;id&quot;</span><span class="hl-0">: </span><span class="hl-2">10</span><br/><span class="hl-0">        }</span><br/><span class="hl-0">    },</span><br/><span class="hl-0">}</span>
+</code><button>Copy</button></pre>
+<a id="md:장바구니-아이템-추가" class="tsd-anchor"></a><h5><a href="#md:장바구니-아이템-추가">장바구니 아이템 추가</a></h5><table>
+<thead>
+<tr>
+<th>method</th>
+<th>uri</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>POST</td>
+<td>/carts</td>
+</tr>
+</tbody></table>
+<pre><code class="language-json"><span class="hl-0">{</span><br/><span class="hl-0">    </span><span class="hl-1">&quot;requestBody&quot;</span><span class="hl-0">: {</span><br/><span class="hl-0">        </span><span class="hl-1">&quot;product&quot;</span><span class="hl-0">: {</span><br/><span class="hl-0">            </span><span class="hl-1">&quot;id&quot;</span><span class="hl-0">: </span><span class="hl-2">10</span><span class="hl-0">,</span><br/><span class="hl-0">            </span><span class="hl-1">&quot;name&quot;</span><span class="hl-0">: </span><span class="hl-3">&quot;tes11111t&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">            </span><span class="hl-1">&quot;price&quot;</span><span class="hl-0">: </span><span class="hl-2">1234</span><span class="hl-0">,</span><br/><span class="hl-0">            </span><span class="hl-1">&quot;imageUrl&quot;</span><span class="hl-0">: </span><span class="hl-3">&quot;test.com&quot;</span><br/><span class="hl-0">        }</span><br/><span class="hl-0">    }</span><br/><span class="hl-0">}</span>
+</code><button>Copy</button></pre>
+<a id="md:장바구니-아이템-단일-삭제" class="tsd-anchor"></a><h5><a href="#md:장바구니-아이템-단일-삭제">장바구니 아이템 단일 삭제</a></h5><table>
+<thead>
+<tr>
+<th>method</th>
+<th>uri</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DELETE</td>
+<td>/carts/{cartId}</td>
+</tr>
+</tbody></table>
+<pre><code class="language-json"><span class="hl-0">{</span><br/><span class="hl-0">    </span><span class="hl-1">&quot;response&quot;</span><span class="hl-0">: {}</span><br/><span class="hl-0">}</span>
+</code><button>Copy</button></pre>
+<a id="md:🗒-주문" class="tsd-anchor"></a><h4><a href="#md:🗒-주문">🗒 주문</a></h4><a id="md:주문-추가주문하기" class="tsd-anchor"></a><h5><a href="#md:주문-추가주문하기">주문 추가(주문하기)</a></h5><table>
+<thead>
+<tr>
+<th>method</th>
+<th>uri</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>POST</td>
+<td>/orders</td>
+</tr>
+</tbody></table>
+<pre><code class="language-json"><span class="hl-0">{</span><br/><span class="hl-0">    </span><span class="hl-1">&quot;requestBody&quot;</span><span class="hl-0">: {</span><br/><span class="hl-0">        </span><span class="hl-1">&quot;orderDetails&quot;</span><span class="hl-0">: [</span><br/><span class="hl-0">            {</span><br/><span class="hl-0">                </span><span class="hl-1">&quot;id&quot;</span><span class="hl-0">: </span><span class="hl-2">1</span><span class="hl-0">,</span><br/><span class="hl-0">                </span><span class="hl-1">&quot;price&quot;</span><span class="hl-0">: </span><span class="hl-2">10000</span><span class="hl-0">,</span><br/><span class="hl-0">                </span><span class="hl-1">&quot;name&quot;</span><span class="hl-0">: </span><span class="hl-3">&quot;치킨&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">                </span><span class="hl-1">&quot;imageUrl&quot;</span><span class="hl-0">: </span><span class="hl-3">&quot;http://example.com/chicken.jpg&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">                </span><span class="hl-1">&quot;quantity&quot;</span><span class="hl-0">: </span><span class="hl-2">5</span><br/><span class="hl-0">            },</span><br/><span class="hl-0">            {</span><br/><span class="hl-0">                </span><span class="hl-1">&quot;id&quot;</span><span class="hl-0">: </span><span class="hl-2">2</span><span class="hl-0">,</span><br/><span class="hl-0">                </span><span class="hl-1">&quot;price&quot;</span><span class="hl-0">: </span><span class="hl-2">20000</span><span class="hl-0">,</span><br/><span class="hl-0">                </span><span class="hl-1">&quot;name&quot;</span><span class="hl-0">: </span><span class="hl-3">&quot;피자&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">                </span><span class="hl-1">&quot;imageUrl&quot;</span><span class="hl-0">: </span><span class="hl-3">&quot;http://example.com/pizza.jpg&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">                </span><span class="hl-1">&quot;quantity&quot;</span><span class="hl-0">: </span><span class="hl-2">3</span><br/><span class="hl-0">            }</span><br/><span class="hl-0">        ]</span><br/><span class="hl-0">    }</span><br/><span class="hl-0">}</span>
+</code><button>Copy</button></pre>
+<a id="md:주문-목록내역-조회" class="tsd-anchor"></a><h5><a href="#md:주문-목록내역-조회">주문 목록(내역) 조회</a></h5><table>
+<thead>
+<tr>
+<th>method</th>
+<th>uri</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GET</td>
+<td>/orders</td>
+</tr>
+</tbody></table>
+<pre><code class="language-json"><span class="hl-0">{</span><br/><span class="hl-0">    </span><span class="hl-1">&quot;response&quot;</span><span class="hl-0">: [</span><br/><span class="hl-0">        {</span><br/><span class="hl-0">            </span><span class="hl-1">&quot;id&quot;</span><span class="hl-0">: </span><span class="hl-2">1</span><span class="hl-0">,</span><br/><span class="hl-0">            </span><span class="hl-1">&quot;orderDetails&quot;</span><span class="hl-0">: [</span><br/><span class="hl-0">                {</span><br/><span class="hl-0">                    </span><span class="hl-1">&quot;id&quot;</span><span class="hl-0">: </span><span class="hl-2">1</span><span class="hl-0">,</span><br/><span class="hl-0">                    </span><span class="hl-1">&quot;price&quot;</span><span class="hl-0">: </span><span class="hl-2">10000</span><span class="hl-0">,</span><br/><span class="hl-0">                    </span><span class="hl-1">&quot;name&quot;</span><span class="hl-0">: </span><span class="hl-3">&quot;치킨&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">                    </span><span class="hl-1">&quot;imageUrl&quot;</span><span class="hl-0">: </span><span class="hl-3">&quot;http://example.com/chicken.jpg&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">                    </span><span class="hl-1">&quot;quantity&quot;</span><span class="hl-0">: </span><span class="hl-2">5</span><br/><span class="hl-0">                },</span><br/><span class="hl-0">                {</span><br/><span class="hl-0">                    </span><span class="hl-1">&quot;id&quot;</span><span class="hl-0">: </span><span class="hl-2">2</span><span class="hl-0">,</span><br/><span class="hl-0">                    </span><span class="hl-1">&quot;price&quot;</span><span class="hl-0">: </span><span class="hl-2">20000</span><span class="hl-0">,</span><br/><span class="hl-0">                    </span><span class="hl-1">&quot;name&quot;</span><span class="hl-0">: </span><span class="hl-3">&quot;피자&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">                    </span><span class="hl-1">&quot;imageUrl&quot;</span><span class="hl-0">: </span><span class="hl-3">&quot;http://example.com/pizza.jpg&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">                    </span><span class="hl-1">&quot;quantity&quot;</span><span class="hl-0">: </span><span class="hl-2">3</span><br/><span class="hl-0">                }</span><br/><span class="hl-0">            ]</span><br/><span class="hl-0">        },</span><br/><span class="hl-0">        {</span><br/><span class="hl-0">            </span><span class="hl-1">&quot;id&quot;</span><span class="hl-0">: </span><span class="hl-2">2</span><span class="hl-0">,</span><br/><span class="hl-0">            </span><span class="hl-1">&quot;orderDetails&quot;</span><span class="hl-0">: [</span><br/><span class="hl-0">                {</span><br/><span class="hl-0">                    </span><span class="hl-1">&quot;id&quot;</span><span class="hl-0">: </span><span class="hl-2">1</span><span class="hl-0">,</span><br/><span class="hl-0">                    </span><span class="hl-1">&quot;price&quot;</span><span class="hl-0">: </span><span class="hl-2">10000</span><span class="hl-0">,</span><br/><span class="hl-0">                    </span><span class="hl-1">&quot;name&quot;</span><span class="hl-0">: </span><span class="hl-3">&quot;치킨&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">                    </span><span class="hl-1">&quot;imageUrl&quot;</span><span class="hl-0">: </span><span class="hl-3">&quot;http://example.com/chicken.jpg&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">                    </span><span class="hl-1">&quot;quantity&quot;</span><span class="hl-0">: </span><span class="hl-2">5</span><br/><span class="hl-0">                },</span><br/><span class="hl-0">                {</span><br/><span class="hl-0">                    </span><span class="hl-1">&quot;id&quot;</span><span class="hl-0">: </span><span class="hl-2">2</span><span class="hl-0">,</span><br/><span class="hl-0">                    </span><span class="hl-1">&quot;price&quot;</span><span class="hl-0">: </span><span class="hl-2">20000</span><span class="hl-0">,</span><br/><span class="hl-0">                    </span><span class="hl-1">&quot;name&quot;</span><span class="hl-0">: </span><span class="hl-3">&quot;피자&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">                    </span><span class="hl-1">&quot;imageUrl&quot;</span><span class="hl-0">: </span><span class="hl-3">&quot;http://example.com/pizza.jpg&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">                    </span><span class="hl-1">&quot;quantity&quot;</span><span class="hl-0">: </span><span class="hl-2">3</span><br/><span class="hl-0">                }</span><br/><span class="hl-0">            ]</span><br/><span class="hl-0">        }</span><br/><span class="hl-0">    ]</span><br/><span class="hl-0">}</span>
+</code><button>Copy</button></pre>
+<a id="md:주문-단일-조회" class="tsd-anchor"></a><h4><a href="#md:주문-단일-조회">주문 단일 조회</a></h4><table>
+<thead>
+<tr>
+<th>method</th>
+<th>uri</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GET</td>
+<td>/orders/{id}</td>
+</tr>
+</tbody></table>
+<pre><code class="language-json"><span class="hl-0">{</span><br/><span class="hl-0">    </span><span class="hl-1">&quot;response&quot;</span><span class="hl-0">: {</span><br/><span class="hl-0">        </span><span class="hl-1">&quot;id&quot;</span><span class="hl-0">: </span><span class="hl-2">1</span><span class="hl-0">,</span><br/><span class="hl-0">        </span><span class="hl-1">&quot;orderDetails&quot;</span><span class="hl-0">: [</span><br/><span class="hl-0">            {</span><br/><span class="hl-0">                </span><span class="hl-1">&quot;id&quot;</span><span class="hl-0">: </span><span class="hl-2">1</span><span class="hl-0">,</span><br/><span class="hl-0">                </span><span class="hl-1">&quot;price&quot;</span><span class="hl-0">: </span><span class="hl-2">10000</span><span class="hl-0">,</span><br/><span class="hl-0">                </span><span class="hl-1">&quot;name&quot;</span><span class="hl-0">: </span><span class="hl-3">&quot;치킨&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">                </span><span class="hl-1">&quot;imageUrl&quot;</span><span class="hl-0">: </span><span class="hl-3">&quot;http://example.com/chicken.jpg&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">                </span><span class="hl-1">&quot;quantity&quot;</span><span class="hl-0">: </span><span class="hl-2">5</span><br/><span class="hl-0">            },</span><br/><span class="hl-0">            {</span><br/><span class="hl-0">                </span><span class="hl-1">&quot;id&quot;</span><span class="hl-0">: </span><span class="hl-2">2</span><span class="hl-0">,</span><br/><span class="hl-0">                </span><span class="hl-1">&quot;price&quot;</span><span class="hl-0">: </span><span class="hl-2">20000</span><span class="hl-0">,</span><br/><span class="hl-0">                </span><span class="hl-1">&quot;name&quot;</span><span class="hl-0">: </span><span class="hl-3">&quot;피자&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">                </span><span class="hl-1">&quot;imageUrl&quot;</span><span class="hl-0">: </span><span class="hl-3">&quot;http://example.com/pizza.jpg&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">                </span><span class="hl-1">&quot;quantity&quot;</span><span class="hl-0">: </span><span class="hl-2">3</span><br/><span class="hl-0">            }</span><br/><span class="hl-0">        ]</span><br/><span class="hl-0">    }</span><br/><span class="hl-0">}</span>
+</code><button>Copy</button></pre>
+</div></div><div class="col-sidebar"><div class="page-menu"><div class="tsd-navigation settings"><details class="tsd-index-accordion"><summary class="tsd-accordion-summary"><h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><use href="assets/icons.svg#icon-chevronDown"></use></svg>Settings</h3></summary><div class="tsd-accordion-details"><div class="tsd-filter-visibility"><h4 class="uppercase">Member Visibility</h4><form><ul id="tsd-filter-options"><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-private" name="private"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Private</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></form></div><div class="tsd-theme-toggle"><h4 class="uppercase">Theme</h4><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div><details open class="tsd-index-accordion tsd-page-navigation"><summary class="tsd-accordion-summary"><h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><use href="assets/icons.svg#icon-chevronDown"></use></svg>On This Page</h3></summary><div class="tsd-accordion-details"><a href="#md:🚀-getting-started"><span>🚀 <wbr/>Getting <wbr/>Started</span></a><ul><li><a href="#md:🕋-server-guide"><span>🕋 <wbr/>Server <wbr/>Guide</span></a></li><li><a href="#md:📝-api-amp-db-schema"><span>📝 API &amp; DB <wbr/>Schema</span></a></li><li><ul><li><a href="#md:🎁-상품"><span>🎁 상품</span></a></li><li><ul><li><a href="#md:상품-목록-조회"><span>상품 목록 조회</span></a></li><li><a href="#md:상품-추가"><span>상품 추가</span></a></li><li><a href="#md:상품-단일-조회"><span>상품 단일 조회</span></a></li><li><a href="#md:상품-단일-삭제"><span>상품 단일 삭제</span></a></li></ul></li><li><a href="#md:🛒-장바구니"><span>🛒 장바구니</span></a></li><li><ul><li><a href="#md:장바구니-아이템-목록-조회"><span>장바구니 아이템 목록 조회</span></a></li><li><a href="#md:장바구니-아이템-추가"><span>장바구니 아이템 추가</span></a></li><li><a href="#md:장바구니-아이템-단일-삭제"><span>장바구니 아이템 단일 삭제</span></a></li></ul></li><li><a href="#md:🗒-주문"><span>🗒 주문</span></a></li><li><ul><li><a href="#md:주문-추가주문하기"><span>주문 추가(주문하기)</span></a></li><li><a href="#md:주문-목록내역-조회"><span>주문 목록(내역) 조회</span></a></li></ul></li><li><a href="#md:주문-단일-조회"><span>주문 단일 조회</span></a></li></ul></li></ul></div></details></div><div class="site-menu"><nav class="tsd-navigation"><a href="index.html" class="current"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="assets/icons.svg#icon-1"></use></svg><span>react-shopping-cart</span></a><ul class="tsd-small-nested-navigation" id="tsd-nav-container" data-base="."><li>Loading...</li></ul></nav></div></div></div><footer><p class="tsd-generator">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></footer><div class="overlay"></div></body></html>
