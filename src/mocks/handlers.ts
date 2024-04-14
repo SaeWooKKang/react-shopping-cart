@@ -1,3 +1,3 @@
-import { http, HttpResponse } from 'msw'
+import { productsHandlers } from './products/products.handlers'
 
-export const handlers = []
+export const handlers = [...productsHandlers]
