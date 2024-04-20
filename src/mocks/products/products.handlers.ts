@@ -14,4 +14,11 @@ export const productsHandlers = [
 
     return HttpResponse.json(Array.from(allProducts.values()))
   }),
+  http.get('/products/:id', async ({ params }) => {
+    await delay(1000)
+
+    const { id } = params
+
+    return HttpResponse.json(allProducts.get(Number(id)))
+  }),
 ]
