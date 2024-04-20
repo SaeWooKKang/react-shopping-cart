@@ -24,7 +24,7 @@ export const ProductList = () => {
       cases={{
         success: (
           <RenderPropsList
-            list={data!}
+            list={data || []}
             renderItem={(props) => <ProductCard {...props} />}
             className="product-container"
             style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)' }}
