@@ -6,6 +6,7 @@ import { parseApiStatus } from '@/common/utils/parseApiStatus'
 import { useCartListStore } from '@/routes/-common/store/cartListStore'
 
 import { Product } from './-common/components/Product/Product'
+import { ProductSkeleton } from './-common/components/ProductSkeleton/ProductSkeleton'
 import type { Product as ProductResponse } from './-product-item.api'
 import { getProduct } from './-product-item.api'
 
@@ -29,7 +30,7 @@ function ProductDetail() {
       value={parseApiStatus({ isLoading, isError })}
       cases={{
         success: data ? <Product {...data} saveProduct={saveProduct} /> : null,
-        loading: <div>loading...</div>,
+        loading: <ProductSkeleton />,
         error: <div>error</div>,
       }}
     />
