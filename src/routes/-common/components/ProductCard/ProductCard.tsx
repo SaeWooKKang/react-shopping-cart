@@ -1,3 +1,5 @@
+import { Link } from '@tanstack/react-router'
+
 import type { ProductList } from '@/routes/-product-list.api'
 
 import { useCartListStore } from '../../store/cartListStore'
@@ -8,7 +10,7 @@ export const ProductCard = (props: ProductCardProps) => {
   const cartListStore = useCartListStore()
 
   return (
-    <>
+    <Link to={`/products/$id`} params={{ id: String(props.id) }}>
       <img src={props.imageUrl} alt={props.name} />
 
       <div className="flex justify-between p-5">
@@ -17,10 +19,17 @@ export const ProductCard = (props: ProductCardProps) => {
           <span className="product-info__price">{props.price.toLocaleString()}</span>
         </div>
 
-        <button className="pointer" onClick={() => cartListStore.saveProduct(props.id)}>
+        <button
+          className="pointer"
+          onClick={(e) => {
+            e.preventDefault()
+
+            cartListStore.saveProduct(props.id)
+          }}
+        >
           <img src={'/src/assets/svgs/cart.svg'} alt="장바구니" />
         </button>
       </div>
-    </>
+    </Link>
   )
 }
