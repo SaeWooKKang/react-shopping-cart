@@ -1,3 +1,5 @@
+import './index.css'
+
 import { useQuery } from '@tanstack/react-query'
 
 import { RenderPropsList } from '@/common/components/RenderPropsList/RenderPropsList'
@@ -24,10 +26,9 @@ export const ProductList = () => {
       cases={{
         success: (
           <RenderPropsList
+            className="product-container2"
             list={data || []}
             renderItem={(props) => <ProductCard {...props} />}
-            className="product-container"
-            style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)' }}
           />
         ),
         loading: (
@@ -36,8 +37,7 @@ export const ProductList = () => {
               id: i,
             }))}
             renderItem={() => <Skeleton />}
-            className="product-container"
-            style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)' }}
+            className=" product-container2"
           />
         ),
         error: <>error</>,
