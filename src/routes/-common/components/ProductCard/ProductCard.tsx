@@ -11,7 +11,7 @@ export const ProductCard = (props: ProductCardProps) => {
 
   return (
     <Link to={`/products/$id`} params={{ id: String(props.id) }}>
-      <img src={props.imageUrl} alt={props.name} />
+      <img src={props.imageUrl} alt={props.name} style={{ width: '100%' }} />
 
       <div className="flex justify-between p-5">
         <div className="product-info">
