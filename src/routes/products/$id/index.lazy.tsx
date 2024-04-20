@@ -2,7 +2,6 @@ import { useQuery } from '@tanstack/react-query'
 import { createFileRoute } from '@tanstack/react-router'
 
 import { SwitchCase } from '@/common/components/SwitchCase/SwitchCase'
-import { parseApiStatus } from '@/common/utils/parseApiStatus'
 import { useCartListStore } from '@/routes/-common/store/cartListStore'
 
 import { Product } from './-common/components/Product/Product'
@@ -18,7 +17,7 @@ export const Route = createFileRoute('/products/$id/')({
 function ProductDetail() {
   const { id } = Route.useParams()
 
-  const { data, isLoading, isError } = useQuery<ProductResponse>({
+  const { data, status } = useQuery<ProductResponse>({
     queryKey: ['product', id],
     queryFn: () => getProduct(id),
   })
@@ -27,10 +26,10 @@ function ProductDetail() {
 
   return (
     <SwitchCase
-      value={parseApiStatus({ isLoading, isError })}
+      value={status}
       cases={{
         success: data ? <Product {...data} saveProduct={saveProduct} /> : null,
-        loading: <ProductSkeleton />,
+        pending: <ProductSkeleton />,
         error: <div>error</div>,
       }}
     />
