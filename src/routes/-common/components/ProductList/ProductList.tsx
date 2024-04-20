@@ -27,6 +27,7 @@ export const ProductList = () => {
     },
     initialPageParam: 0,
     getNextPageParam: (res: ProductListResponse) => res.meta.next_page,
+    staleTime: 1000 * 60 * 3,
   })
 
   useEffect(() => {
