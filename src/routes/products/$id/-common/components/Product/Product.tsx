@@ -20,7 +20,7 @@ export const Product = (props: ProductProps) => {
 
         <button
           onClick={() => props.saveProduct(props.id)}
-          className="product-detail-button flex-center mt-20"
+          className="product-detail-button flex-center mt-20 pointer"
         >
           장바구니
         </button>
