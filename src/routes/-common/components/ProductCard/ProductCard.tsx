@@ -1,10 +1,10 @@
 import { Link } from '@tanstack/react-router'
 
-import type { ProductList } from '@/routes/-product-list.api'
+import type { ProductListResponse } from '@/routes/-product-list.api'
 
 import { useCartListStore } from '../../store/cartListStore'
 
-type ProductCardProps = ProductList[number]
+type ProductCardProps = ProductListResponse['list'][number]
 
 export const ProductCard = (props: ProductCardProps) => {
   const cartListStore = useCartListStore()
