@@ -2,7 +2,7 @@ import { Link } from '@tanstack/react-router'
 
 import type { ProductListResponse } from '@/routes/-product-list.api'
 
-import { useCartListStore } from '../../store/cartListStore'
+import { useCartListStore } from '../../store/cartListStore/cartListStore'
 
 type ProductCardProps = ProductListResponse['list'][number]
 
@@ -24,7 +24,7 @@ export const ProductCard = (props: ProductCardProps) => {
           onClick={(e) => {
             e.preventDefault()
 
-            cartListStore.saveProduct(props.id)
+            cartListStore.actions.saveProduct(props.id)
           }}
         >
           <img src={'/src/assets/svgs/cart.svg'} alt="장바구니" />
