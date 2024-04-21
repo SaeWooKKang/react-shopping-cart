@@ -1,13 +1,7 @@
 import { delay, http, HttpResponse } from 'msw'
 
-import type { ProductListResponse } from '@/routes/-product-list.api'
-
 import { PAGE_META } from '../const'
-import products from './products.json'
-
-const allProducts = new Map<number, ProductListResponse['list'][number]>(
-  products.map((product) => [product.id, product])
-)
+import { productsRepository } from './products.repository'
 
 export const productsHandlers = [
   http.get('/products', async ({ request }) => {
@@ -21,11 +15,11 @@ export const productsHandlers = [
     const start = page * perCount
     const end = start + perCount
 
-    const maxPage = Math.ceil(allProducts.size / perCount)
+    const maxPage = Math.ceil(productsRepository.size / perCount)
     const nextPage = page < maxPage ? page + 1 : undefined
 
     return HttpResponse.json({
-      list: Array.from(allProducts.values()).slice(start, end),
+      list: Array.from(productsRepository.values()).slice(start, end),
       meta: { next_page: nextPage },
     })
   }),
@@ -34,6 +28,6 @@ export const productsHandlers = [
 
     const { id } = params
 
-    return HttpResponse.json(allProducts.get(Number(id)))
+    return HttpResponse.json(productsRepository.get(Number(id)))
   }),
 ]
