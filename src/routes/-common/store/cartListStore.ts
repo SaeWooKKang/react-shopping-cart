@@ -40,8 +40,46 @@ export const useCartListStore = () => {
       : setValue((prev) => ({ ...prev, cartList: [...prev.cartList, { id, count: 1 }] }))
   }
 
+  const increaseCount = (id: CartItem['id']) => {
+    const MAX_COUNT = 20
+
+    setValue((prev) => ({
+      ...prev,
+      cartList: prev.cartList.map((product) => {
+        return product.id === id
+          ? { ...product, count: product.count < MAX_COUNT ? product.count + 1 : MAX_COUNT }
+          : product
+      }),
+    }))
+  }
+
+  const decreaseCount = (id: CartItem['id']) => {
+    const MIN_COUNT = 1
+
+    setValue((prev) => ({
+      ...prev,
+      cartList: prev.cartList
+        .map((product) => {
+          return product.id === id
+            ? { ...product, count: product.count > MIN_COUNT ? product.count - 1 : MIN_COUNT }
+            : product
+        })
+        .filter((product) => product.count > 0),
+    }))
+  }
+
+  const deleteProduct = (id: CartItem['id']) => {
+    setValue((prev) => ({
+      ...prev,
+      cartList: prev.cartList.filter((product) => product.id !== id),
+    }))
+  }
+
   return {
     cartList: value.cartList,
     saveProduct,
+    increaseCount,
+    decreaseCount,
+    deleteProduct,
   }
 }
