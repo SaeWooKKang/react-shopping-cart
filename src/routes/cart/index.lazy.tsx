@@ -13,8 +13,6 @@ export const Route = createLazyFileRoute('/cart/')({
 function Cart() {
   const { actions, cartsQuery, computed } = useCartVM()
 
-  if (cartsQuery.isLoading) return <>loading..</>
-
   return (
     <section className="cart-section">
       <header className="flex-col-center mt-20">
