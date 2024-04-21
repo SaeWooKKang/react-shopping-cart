@@ -8,6 +8,6 @@ const sourceCodeExtensionRegex = /\.(ts|tsx|js|jsx)$/i
 
 export const worker = setupWorker(
   ...handlers,
-  http.get(imageExtensionRegex, (req) => {}),
-  http.get(sourceCodeExtensionRegex, (req) => {})
+  http.get(imageExtensionRegex, () => {}),
+  http.get(sourceCodeExtensionRegex, () => {})
 )
