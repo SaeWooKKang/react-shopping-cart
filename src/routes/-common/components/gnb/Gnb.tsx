@@ -1,6 +1,6 @@
 import { Link } from '@tanstack/react-router'
 
-import { useCartListStore } from '../../store/cartListStore'
+import { useCartListStore } from '../../store/cartListStore/cartListStore'
 
 /**
  * @summary 공통으로 사용하는 네비게이션 바

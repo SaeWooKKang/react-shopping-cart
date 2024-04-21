@@ -1,9 +1,7 @@
-import { useQuery } from '@tanstack/react-query'
 import { createLazyFileRoute } from '@tanstack/react-router'
 import { Fragment } from 'react'
 
-import { useCartListStore } from '../-common/store/cartListStore'
-import { getCartList } from './-cart-list.api'
+import { useCartVM } from './-useCartVM'
 
 export const Route = createLazyFileRoute('/cart/')({
   component: Cart,
@@ -13,27 +11,9 @@ export const Route = createLazyFileRoute('/cart/')({
  * @summary 장바구니 페이지
  */
 function Cart() {
-  const { cartList, increaseCount, decreaseCount, deleteProduct } = useCartListStore()
+  const { actions, cartsQuery, computed } = useCartVM()
 
-  const { data, isLoading } = useQuery({
-    queryKey: ['carts', cartList],
-    queryFn: getCartList,
-    select: (response) => {
-      const parsed = response.list.map((product) => {
-        return {
-          ...product,
-          totalPrice: `${(product.price * product.count).toLocaleString()}원`,
-        }
-      })
-
-      return {
-        list: parsed,
-        totalCount: response.list.reduce((acc, cur) => acc + cur.count, 0),
-      }
-    },
-  })
-
-  if (isLoading) return <>loading..</>
+  if (cartsQuery.isLoading) return <>loading..</>
 
   return (
     <section className="cart-section">
@@ -50,18 +30,30 @@ function Cart() {
                 className="checkbox"
                 name="checkbox"
                 type="checkbox"
-                checked={true}
-                onChange={() => {}}
+                checked={computed.isAllProductChecked}
+                onChange={actions.toggleAll}
               />
               <label className="checkbox-label" htmlFor="checkbox">
                 선택해제
               </label>
             </div>
-            <button className="delete-button">상품삭제</button>
+            <button
+              className="delete-button"
+              type="button"
+              disabled={!cartsQuery.data?.hasProduct}
+              onClick={() => {
+                if (confirm('전체 상품을 삭제하시겠습니까?')) {
+                  actions.deleteAllProducts()
+                }
+              }}
+              style={{ backgroundColor: cartsQuery.data?.hasProduct ? '#fff' : '#eee' }}
+            >
+              상품삭제
+            </button>
           </div>
-          <h3 className="cart-title">든든배송 상품({data?.totalCount}개)</h3>
+
           <hr className="divide-line-gray mt-10" />
-          {data?.list.map((product) => (
+          {cartsQuery.data?.list.map((product) => (
             <Fragment key={product.id}>
               <div className="cart-container">
                 <div className="flex gap-15 mt-10">
@@ -69,8 +61,10 @@ function Cart() {
                     className="checkbox"
                     name="checkbox"
                     type="checkbox"
-                    checked={true}
-                    onChange={() => {}}
+                    checked={actions.isCheckedProduct(product.id) ?? false}
+                    onChange={() => {
+                      actions.toggleProduct(product.id)
+                    }}
                   />
                   <img className="w-144 h-144" src={product.imageUrl} alt={product.name} />
                   <span className="cart-name">{product.name}</span>
@@ -81,7 +75,7 @@ function Cart() {
                     className="pointer"
                     onClick={() => {
                       if (confirm('상품을 삭제하시겠습니까?')) {
-                        deleteProduct(product.id)
+                        actions.deleteProduct(product.id)
                       }
                     }}
                     style={{ alignSelf: 'flex-end' }}
@@ -91,27 +85,29 @@ function Cart() {
 
                   <div className="number-input-container">
                     <input
+                      key={product.count}
                       type="number"
                       className="number-input"
-                      value={product.count}
-                      onChange={() => {}}
+                      // value={product.count}
+                      defaultValue={product.count}
+                      onBlur={(e) => actions.changeProductCount(e, product)}
                     />
                     <div>
                       <button
                         className="number-input-button"
-                        onClick={() => increaseCount(product.id)}
+                        onClick={() => actions.increaseCount(product.id)}
                       >
                         ▲
                       </button>
                       <button
                         className="number-input-button"
-                        onClick={() => decreaseCount(product.id)}
+                        onClick={() => actions.decreaseCount(product.id)}
                       >
                         ▼
                       </button>
                     </div>
                   </div>
-                  <span className="cart-price">{product.totalPrice}</span>
+                  <span className="cart-price">{product.totalPrice.toLocaleString()}원</span>
                 </div>
               </div>
               <hr className="divide-line-thin mt-10" />
@@ -127,10 +123,16 @@ function Cart() {
           <div className="cart-right-section__bottom">
             <div className="flex justify-between p-20 mt-20">
               <span className="highlight-text">결제예상금액</span>
-              <span className="highlight-text">21,800원</span>
+              <span className="highlight-text">{computed.paymentTotal}원</span>
             </div>
             <div className="flex-center mt-30 mx-10">
-              <button className="primary-button flex-center">주문하기(3개)</button>
+              <button
+                className="primary-button flex-center"
+                disabled={!computed.totalSelectedCount}
+                style={{ backgroundColor: computed.totalSelectedCount ? '#2AC1BC' : '#eee' }}
+              >
+                주문하기({computed.totalSelectedCount})
+              </button>
             </div>
           </div>
         </section>

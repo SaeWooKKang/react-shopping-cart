@@ -17,12 +17,12 @@ export function getCookie<T>(name: T) {
  * @summary 쿠키를 저장한다.
  * @reference https://developer.mozilla.org/en-US/docs/Web/API/Document/cookie
  */
-export function setCookie<Key extends string, Value extends string>(
+export function setCookie<Key extends string, Value>(
   name: Key,
   value: Value,
   options: CookieOptions
 ) {
-  const cookieString = `${encodeURIComponent(name)}=${encodeURIComponent(value)}`
+  const cookieString = `${encodeURIComponent(name)}=${encodeURIComponent(JSON.stringify(value))}`
 
   // eslint-disable-next-line no-shadow
   const cookieOptions = Object.entries(options).reduce((prev, [key, value]) => {

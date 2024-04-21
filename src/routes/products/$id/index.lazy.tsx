@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import { createFileRoute } from '@tanstack/react-router'
 
 import { SwitchCase } from '@/common/components/SwitchCase/SwitchCase'
-import { useCartListStore } from '@/routes/-common/store/cartListStore'
+import { useCartListStore } from '@/routes/-common/store/cartListStore/cartListStore'
 
 import { Product } from './-common/components/Product/Product'
 import { ProductSkeleton } from './-common/components/ProductSkeleton/ProductSkeleton'
@@ -22,13 +22,13 @@ function ProductDetail() {
     queryFn: () => getProduct(id),
   })
 
-  const { saveProduct } = useCartListStore()
+  const { actions } = useCartListStore()
 
   return (
     <SwitchCase
       value={status}
       cases={{
-        success: data ? <Product {...data} saveProduct={saveProduct} /> : null,
+        success: data ? <Product {...data} saveProduct={actions.saveProduct} /> : null,
         pending: <ProductSkeleton />,
         error: <div>error</div>,
       }}
