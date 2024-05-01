@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { useEffect, useState } from 'react'
 
 import { useCartListStore } from '../-common/store/cartListStore/cartListStore'
@@ -8,10 +8,22 @@ import { CartListResponse, getCartList } from './-cart-list.api'
  * @summary 카트 페이지의 view model
  */
 export const useCartVM = () => {
-  const { cartList, actions } = useCartListStore()
+  const { actions } = useCartListStore()
+  const queryClient = useQueryClient()
+
+  /**
+   * @summary cartsQuery를 트리거한다.
+   */
+  const cartQueryTriggerDecorator = <T>(fn: T) => {
+    queryClient.invalidateQueries({
+      queryKey: ['carts'],
+    })
+
+    return fn
+  }
 
   const cartsQuery = useQuery({
-    queryKey: ['carts', cartList],
+    queryKey: ['carts'],
     queryFn: getCartList,
     select: (response) => {
       const parsed = response.list.map((product) => {
@@ -78,6 +90,16 @@ export const useCartVM = () => {
     .reduce((acc, product) => acc + product.totalPrice, 0)
     .toLocaleString()
 
+  const decoratedCartListActions = Object.entries(actions).reduce(
+    (prev, [key, fn]) => {
+      return {
+        ...prev,
+        [key]: cartQueryTriggerDecorator(fn),
+      }
+    },
+    {} as typeof actions
+  )
+
   return {
     cartsQuery,
     computed: {
@@ -89,7 +111,7 @@ export const useCartVM = () => {
       toggleProduct,
       toggleAll,
       isCheckedProduct,
-      ...actions,
+      ...decoratedCartListActions,
     },
   }
 }
