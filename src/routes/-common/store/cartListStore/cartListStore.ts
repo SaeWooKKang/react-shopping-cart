@@ -1,6 +1,6 @@
 import { ChangeEvent, useEffect } from 'react'
 
-import { getCookie, setCookie } from '@/common/hooks/useCookieRepository/service'
+import { getCookie, setCookie } from '@/common/utils/cookie'
 import { createStore } from '@/common/module/store/store'
 import { useStore } from '@/common/module/store/useStore'
 import type { Product } from '@/routes/-product-list.api'

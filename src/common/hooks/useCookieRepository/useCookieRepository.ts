@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
-import { getCookie, setCookie } from './service'
-import { CookieOptions } from './type'
+import { getCookie, setCookie } from '../../utils/cookie'
+import { CookieOptions } from '../../utils/cookie/type'
 
 interface CookieRepository<Key extends string, Value = unknown> {
   get(): Value | undefined
