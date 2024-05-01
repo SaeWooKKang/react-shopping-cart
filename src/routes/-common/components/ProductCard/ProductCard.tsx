@@ -26,6 +26,7 @@ export const ProductCard = (props: ProductCardProps) => {
 
             cartListStore.actions.saveProduct(props.id)
           }}
+          type="button"
         >
           <img src={'/src/assets/svgs/cart.svg'} alt="장바구니" />
         </button>
