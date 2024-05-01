@@ -1,5 +1,3 @@
-import { convertQueryToString } from '@/common/utils/convertQueryToString'
-
 export interface Product {
   id: number
   name: string
@@ -26,8 +24,16 @@ type ProductListParams = PageQuery
 /**
  * @summary 상목목록 API
  */
-export const getProductList = async (query: ProductListParams): Promise<ProductListResponse> => {
-  const response = await fetch(`/products` + `?${convertQueryToString(query)}`)
+export const getProductList = async ({
+  page = 0,
+  perCount = 15,
+}: ProductListParams): Promise<ProductListResponse> => {
+  const urlQueryParams = new URLSearchParams({
+    page: page.toString(),
+    perCount: perCount.toString(),
+  })
+
+  const response = await fetch(`/products` + `?${urlQueryParams.toString()}`)
 
   if (!response.ok) {
     throw new Error('failed to getProductList')
