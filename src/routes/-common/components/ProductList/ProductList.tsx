@@ -19,7 +19,7 @@ import { ProductCard } from '../ProductCard/ProductCard'
 export const ProductList = () => {
   const { ref, inView } = useInView()
   const { data, status, isFetchingNextPage, hasNextPage, fetchNextPage } = useInfiniteQuery({
-    queryKey: ['/posts'],
+    queryKey: ['/products'],
     queryFn: ({ pageParam }) => {
       return getProductList({
         page: pageParam,
