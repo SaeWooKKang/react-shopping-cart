@@ -42,7 +42,7 @@ export const useCartVM = () => {
     setSelectedProductList((prev) => {
       const newMap = new Map(prev)
 
-      if (newMap.get(id)) {
+      if (newMap.has(id)) {
         newMap.delete(id)
 
         return newMap
