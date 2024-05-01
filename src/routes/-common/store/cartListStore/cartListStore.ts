@@ -29,15 +29,19 @@ export const useCartListStore = () => {
   const saveProduct = (id: CartItem['id']) => {
     const foundProduct = value.cartList.find((product) => product.id === id)
 
-    foundProduct
-      ? setValue((prev) => ({
-          ...prev,
-          cartList: [
-            ...prev.cartList.filter((product) => product.id !== id),
-            { id, count: foundProduct.count + 1 },
-          ],
-        }))
-      : setValue((prev) => ({ ...prev, cartList: [...prev.cartList, { id, count: 1 }] }))
+    if (foundProduct) {
+      setValue((prev) => ({
+        ...prev,
+        cartList: [
+          ...prev.cartList.filter((product) => product.id !== id),
+          { id, count: foundProduct.count + 1 },
+        ],
+      }))
+
+      return
+    }
+
+    setValue((prev) => ({ ...prev, cartList: [...prev.cartList, { id, count: 1 }] }))
   }
 
   const increaseCount = (id: CartItem['id']) => {
