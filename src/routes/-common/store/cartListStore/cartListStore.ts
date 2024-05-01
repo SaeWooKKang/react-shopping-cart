@@ -19,6 +19,10 @@ const cartListStore = createStore<{
   cartList: initializeCookie ? JSON.parse(initializeCookie) : [],
 })
 
+/**
+ * @summary 브라우저의 쿠키 데이터와 장바구니 데이터를 상태로 동기화하는 레파지토리이다.
+ * @detail 상태 변경시 브라우저의 쿠키 데이터를 업데이트 한다.
+ */
 export const useCartListStore = () => {
   const [value, setValue] = useStore(cartListStore)
 
